@@ -48,21 +48,31 @@ namespace SortAlgorithmSimulator
         }
         public void sortBuble()
         {
-            int n1 = Convert.ToInt32(txt1.Text);
-            int n2 = Convert.ToInt32(txt2.Text);
-            //int n3 = Convert.ToInt32(txt3.Text);
-            //int n4 = Convert.ToInt32(txt4.Text);
-            //int n5 = Convert.ToInt32(txt5.Text);
-            //int n6 = Convert.ToInt32(txt6.Text);
+            int[] n = {Convert.ToInt32(btn1.Text), Convert.ToInt32(btn2.Text), Convert.ToInt32(btn3.Text), Convert.ToInt32(btn4.Text), Convert.ToInt32(btn5.Text), Convert.ToInt32(btn6.Text)};
+            Panel[] p = { pnl1, pnl2, pnl3, pnl4, pnl5, pnl6 };
 
             int temp;
-            int x = 0, y = 0;
-            if (n1 < n2)
+            int x1 = 0,x2=0,y1=0, y2 = 0, i=0;
+            for(i=0; i<n.Length; i++)
             {
-                x = txt1.Location.X;
-                y = txt1.Location.Y;
-                txt1.Location = txt2.Location;
-                txt2.Location = new Point(x, y);
+                for(int j=0; j<n.Length-1; j++)
+                {
+                    if (n[j] > n[j+1])
+                    {
+                        temp = n[j];
+                        n[j] = n[j+1];
+                        n[j+1] = temp;
+                        x1 = p[j].Location.X;
+                        y1 = p[j].Location.Y;
+                        x2 = p[j + 1].Location.X;
+                        y2 = p[j + 1].Location.Y;
+                        p[j].Location = new Point(x2, y2);
+                        p[j + 1].Location = new Point(x1, y1);
+                        
+                    }
+                }
+               
+                
             }
                 
         }
@@ -70,6 +80,11 @@ namespace SortAlgorithmSimulator
         private void btnstart_Click(object sender, EventArgs e)
         {
             sortBuble();
+        }
+
+        private void pnlsayilar_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
